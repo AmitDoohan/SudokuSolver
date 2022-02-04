@@ -232,6 +232,31 @@ namespace SudokuSolver
             return -1;
         }
 
+        /// <summary>
+        /// The function get bumber of box and number of cell in the box and returns its row
+        /// </summary>
+        /// <param name="boxNum">number of the box</param>
+        /// <param name="cellNumInBox">number of cell in the box</param>
+        /// <returns>row of cell</returns>
+        public int GetRowBySubIndecies(int boxNum, int cellNumInBox)
+        {
+            int boxStartRow = subSize * (boxNum / subSize);
+            int rowInBox = cellNumInBox / subSize;
+            return boxStartRow + rowInBox;
+        }
+
+        /// <summary>
+        /// The function get bumber of box and number of cell in the box and returns its col
+        /// </summary>
+        /// <param name="boxNum">number of the box</param>
+        /// <param name="cellNumInBox">number of cell in the box</param>
+        /// <returns>column of cell</returns>
+        public int GetColBySubIndecies(int boxNum, int cellNumInBox)
+        {
+            int boxStartCol = subSize * (boxNum % subSize);
+            int colInBox = cellNumInBox % subSize;
+            return boxStartCol + colInBox;
+        }
 
 
     }
