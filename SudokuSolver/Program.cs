@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace SudokuSolver
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+          
+            Console.WriteLine("\n\n---------------Welcome to sudoku solver---------------\n");
+
             while (true)
             {
                 Console.WriteLine("\nYou may choose your input:\n" +
@@ -59,6 +64,8 @@ namespace SudokuSolver
                     }
                 }
                 while (!chosen);
+
             }
+        }
     }
 }
