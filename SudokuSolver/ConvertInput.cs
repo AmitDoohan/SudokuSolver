@@ -24,7 +24,7 @@ namespace SudokuSolver
             {
                 ch = input[i];
                 if (!(ch >= '0' && (ch <= ('0' + size))))
-                    return null;
+                    throw new InputInvalidException($"Invalid input. Input contains invalid character: {ch}.");
                 board[i / size, i % size] = (ch - '0');
             }
             return board;
@@ -43,10 +43,10 @@ namespace SudokuSolver
             int size = input.Length;
 
             if (Math.Sqrt(size) % 1 != 0)
-                return 0;
+                throw new InputInvalidException($"Invalid input. Input size is invalid.");
             int wholeSize = (int)Math.Sqrt(size);
             if (Math.Sqrt(wholeSize) % 1 != 0)
-                return 0;
+                throw new InputInvalidException($"Invalid input. Input size is invalid.");
             return wholeSize;
         }
     }
