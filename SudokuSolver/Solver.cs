@@ -105,7 +105,6 @@ namespace SudokuSolver
             }
             return minSquare;
         }//o(n^2)
-
         public static bool SolveBackTracking(Board board)
         {
             int cellsChanged; int total = 0;
@@ -116,7 +115,10 @@ namespace SudokuSolver
                 cellsChanged = SolveWithHumanTactics(board);
                 //if found a mistske-> this guess does not solve the board-> return false
                 if (cellsChanged == -1)
+                {
+                    CleanStack(board, total);
                     return false;
+                }
                 total += cellsChanged;
             } while (cellsChanged != 0);
 
@@ -139,12 +141,12 @@ namespace SudokuSolver
                     //trying to solve the board in its current state
                     if (SolveBackTracking(board))
                         return true;
-                    CleanStack(board, cellsChanged);
                     //initialize (delete) current guess
                     board.DeleteValue(r, c);//o(1)
                     board.SudokuBoard[r, c] = 0;//o(1)
                 }
             }
+            CleanStack(board, cellsChanged);
             //no option fits-> this guess does not solve the board-> return false 
             return false;
         }
