@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace SudokuSolver
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+          
+            Console.WriteLine("\n\n---------------Welcome to sudoku solver---------------\n");
+
             while (true)
             {
                 Console.WriteLine("\nYou may choose your input:\n" +
@@ -59,6 +64,28 @@ namespace SudokuSolver
                     }
                 }
                 while (!chosen);
+               
+                try
+                {
+                    int[,] board = handler.Read();
+                    Board b = new Board(board, board.GetLength(0));
+                    DateTime start = DateTime.Now;
+                    bool success = Solver.SolveBackTracking(b);
+                    DateTime end = DateTime.Now;
+                    Console.WriteLine("Time: " + end.Subtract(start));
+                    if (success)
+                        handler.Write(b.SudokuBoard);
+                    else
+                    {
+                        Console.WriteLine("Board ubsolveable");
+                    }
+                }
+                catch (InputInvalidException e)
+                {
+                    Console.WriteLine(e.Message);
+
+                }
             }
+        }
     }
 }
