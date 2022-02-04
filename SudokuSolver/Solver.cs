@@ -7,34 +7,16 @@ namespace SudokuSolver
 {
     public static class Solver
     {
+        /// <summary>
+        /// Stack that contains all indicies of cells that has been changed (guesess)
+        /// </summary>
         private static Stack<int> indeciesStack = new Stack<int>();
-
-        public static bool PrintBoard(int[,] resultBoard)
-        {
-            int size = resultBoard.GetLength(0);
-            int numberofcells = size * size;
-            int square;
-            Console.Write(" ");
-            for (int i = 1; i <= size; i++)
-            {
-                Console.Write($"   {i}");
-            }
-            Console.Write("\n");
-            for (int i = 0; i < size; i++)
-            {
-                Console.Write($"{i + 1}");
-                for (int j = 0; j < size; j++)
-                //Console.Write($"   {resultBoard[i, j]}");
-                {
-
-                    int x = resultBoard[i, j];
-                    char val = (char)(x + '0');
-                    Console.Write($"   {val}");
-                }
-                Console.WriteLine("\n");
-            }
-            return true;
-        }
+      
+        /// <summary>
+        /// The function gets a board and tries to solve it with human tactics.
+        /// </summary>
+        /// <param name="board">board</param>
+        /// <returns>return number of cells changed</returns>
         public static int SolveWithHumanTactics(Board board)
         {
             int cellsChanged = 0;
@@ -55,6 +37,7 @@ namespace SudokuSolver
                         }
                         if (hidden == -1)
                         {
+                            CleanStack(board, cellsChanged);
                             return -1;
                         }
                         int naked = HumanTactics.FindNaked(board, i, j);
@@ -67,6 +50,7 @@ namespace SudokuSolver
                         }
                         if (naked == -1)
                         {
+                            CleanStack(board, cellsChanged);
                             return -1;
                         }
                     }
@@ -74,6 +58,12 @@ namespace SudokuSolver
             }
             return cellsChanged;
         }//o(n^2)
+
+        /// <summary>
+        /// The function gets a board and finds the cell with minial number of possible values
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns>array that contains indices of cell</returns>
         public static int[] FindMin(Board board)
         {
             int[] minSquare = { -1, -1 };
@@ -105,6 +95,14 @@ namespace SudokuSolver
             }
             return minSquare;
         }//o(n^2)
+     
+        /// <summary>
+        /// The function gets a sudoku board and tries to solve it.
+        /// if succeeded- return true
+        /// otherwise, board is unsolveable and return false
+        /// </summary>
+        /// <param name="board">board</param>
+        /// <returns>bool-is solved</returns>
         public static bool SolveBackTracking(Board board)
         {
             int cellsChanged; int total = 0;
@@ -150,6 +148,14 @@ namespace SudokuSolver
             //no option fits-> this guess does not solve the board-> return false 
             return false;
         }
+
+        /// <summary>
+        /// This function gets a board and number of cells to delete. 
+        /// It delete all last 'cellsNum' cells in the board 
+        /// (including deleting from rows,cols and boxes arrays)
+        /// </summary>
+        /// <param name="board">board</param>
+        /// <param name="cellsNum">number of cells to delete</param>
         public static void CleanStack(Board board, int cellsNum)
         {
             for (int j = 0; j < cellsNum; j++)
