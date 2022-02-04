@@ -43,6 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleHandler.cs" />
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="IOHandler.cs" />
+    <Compile Include="IReadable.cs" />
+    <Compile Include="IWritable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
