@@ -144,7 +144,7 @@ namespace SudokuSolver
                     board.SudokuBoard[r, c] = 0;//o(1)
                 }
             }
-            CleanStack(board, cellsChanged);
+            CleanStack(board, total);
             //no option fits-> this guess does not solve the board-> return false 
             return false;
         }

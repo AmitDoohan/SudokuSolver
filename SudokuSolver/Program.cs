@@ -13,9 +13,19 @@ namespace SudokuSolver
         [STAThread]
         static void Main(string[] args)
         {
-          
-            Console.WriteLine("\n\n---------------Welcome to sudoku solver---------------\n");
 
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n");
+            Console.WriteLine("   .oooooo..o  ooooo     ooo  oooooooooo.      .oooooo    .oooo    oooo  ooooo     ooo" + "\n" +
+                              "  d8P'    `Y8  `888'     `8'  `888'   `Y8b    d8P'  `Y8b   `888   .8P'   `888'     `8'" + "\n" +
+                              "  Y88bo.        888       8    888      888  888      888   888  d8'      888       8 " + "\n" +
+                              "   `\"Y8888o.    888       8    888      888  888      888   88888[        888       8 " + "\n" +
+                              "       `\"Y88b   888       8    888      888  888      888   888`88b.      888       8 " + "\n" +
+                              "       oo.d8P   `88.    .8'    888     d88'  `88b    d88'   888  `88b.    `88.    .8'" + "\n" +
+                              "  8\"\"88888P'      `YbodP'     o888bood8P'     `Y8bood8P'   o888o  o888o     `YbodP'");
+
+            Console.WriteLine("\n\n---------------Welcome to sudoku solver---------------\n");
+            Console.ResetColor();
             while (true)
             {
                 Console.WriteLine("\nYou may choose your input:\n" +
@@ -77,7 +87,9 @@ namespace SudokuSolver
                         handler.Write(b.SudokuBoard);
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Board ubsolveable");
+                        Console.ResetColor();
                     }
                 }
                 catch (InputInvalidException e)
