@@ -24,9 +24,8 @@ namespace SudokuSolver
             {
                 ch = input[i];
                 if (!(ch >= '0' && (ch <= ('0' + size))))
-                    return null; 
+                    return null;
                 board[i / size, i % size] = (ch - '0');
-               // i++;
             }
             return board;
         }
