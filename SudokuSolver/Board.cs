@@ -103,25 +103,22 @@ namespace SudokuSolver
             rows = new int[size];
             cols = new int[size];
             boxes = new int[size];
-            bool isValid = true;
-            for (int i = 0; i < size && isValid; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j = 0; j < size && isValid; j++)
+                for (int j = 0; j < size; j++)
                 {
                     if (board[i, j] != 0)
                     {
                         if (!IsValueValid(i, j, board[i, j]))
                         {
-                            sudokuBoard = null;
-                            isValid = false;
+                            throw new InputInvalidException("Invalid input. Board contains repeated value.");
                         }
                         else
                             InserValue(i, j, board[i, j]);
                     }
                 }
             }
-            if (isValid)
-                sudokuBoard = board;
+            sudokuBoard = board;
         }
 
         //static constructor for bitsSetTable256
