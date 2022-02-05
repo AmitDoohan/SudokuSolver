@@ -96,9 +96,9 @@ namespace SudokuSolver
         }
 
         //CONSTRUCTOR: get a matrix that represents s board  and its size. If its valid, builds new board. Otherwise, throws InputInvalidException.
-        public Board(int[,] board, int size)
+        public Board(int[,] board)
         {
-            this.size = size;
+            size = board.GetLength(0);
             subSize = (int)Math.Sqrt(size);
             rows = new int[size];
             cols = new int[size];
