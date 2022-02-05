@@ -15,9 +15,12 @@ namespace SudokuSolver
         /// <returns>Returns 2d array-board</returns>
         public static int[,] ConvertStringToMatrix(string input)
         {
-            int size = IsInputValid(input), counter = 0;
             char ch;
             input = input.Replace(" ", "");
+            int size = IsInputValid(input);
+            if(size<1)
+                throw new InputInvalidException($"Invalid input. Input is empty.");
+
             int[,] board = new int[size, size];
 
             for (int i = 0; i < input.Length; i++)

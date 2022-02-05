@@ -78,7 +78,7 @@ namespace SudokuSolver
                 try
                 {
                     int[,] board = handler.Read();
-                    Board b = new Board(board, board.GetLength(0));
+                    Board b = new Board(board);
                     DateTime start = DateTime.Now;
                     bool success = Solver.SolveBackTracking(b);
                     DateTime end = DateTime.Now;
@@ -88,7 +88,7 @@ namespace SudokuSolver
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Board ubsolveable");
+                        Console.WriteLine("Board is ubsolvable");
                         Console.ResetColor();
                     }
                 }
